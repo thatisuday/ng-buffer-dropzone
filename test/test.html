@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html ng-app="myNgApp">
+	<head>
+		<meta charset="utf-8">
+		<title>ng-dropzone simple example</title>
+		
+		<!-- AngularJS -->
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+
+		<!-- Dropzone -->
+		<script src="https://rawgit.com/enyo/dropzone/d8ef7a82e6ab5447c1f2d9512c8e1bfd4de5ac9e/dist/dropzone.js"></script>
+		<link rel="stylesheet" href="https://rawgit.com/enyo/dropzone/d8ef7a82e6ab5447c1f2d9512c8e1bfd4de5ac9e/dist/dropzone.css">
+
+		<!-- filereader.js -->
+		<script src="https://rawgit.com/bgrins/filereader.js/master/filereader.js"></script>
+		
+		<!-- ng-dropzone -->
+		<script src="../dist/ng-dropzone.min.js"></script>
+		
+		<!-- Misc -->
+		<link rel="stylesheet" href="../dist/ng-dropzone.min.css">
+		<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900' rel='stylesheet' type='text/css'>
+		
+		<style>
+			body{
+				font-family:'Roboto', sans-serif !important;
+			}
+			.dropzone{
+				width:700px;
+				min-height:250px;
+				margin: 10px auto;
+			}
+			#dropzone3{
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- ####################################################### -->
+		<!-- #####################   DROPZONES  #################### -->
+		<!-- ####################################################### -->
+		
+		<!-- Dropzone 1 -->
+		<div ng-controller="drop1Controller">
+			<div id="dropzone1" class="dropzone" options="dzOptions" callbacks="dzCallbacks" ng-dropzone></div>
+		</div>
+		
+		
+		<!-- ####################################################### -->
+		<!-- #####################  JAVASCRIPT  #################### -->
+		<!-- ####################################################### -->
+		<script>
+			Dropzone.autoDiscover = false;
+			var myNgApp = angular.module('myNgApp', ['thatisuday.dropzone']);
+			
+			myNgApp.config(function(dropzoneOpsProvider){
+				dropzoneOpsProvider.setOptions({
+					url : '/upload_1.php',
+					acceptedFiles : 'image/jpeg, images/jpg, image/png',
+					addRemoveLinks : true,
+					dictDefaultMessage : 'Click - Drop - Paste',
+					dictRemoveFile : 'Remove photo',
+					dictResponseError : 'Could not upload this photo'
+				});
+			});
+			
+			// Dropzone 1
+			myNgApp.controller('drop1Controller', function($scope, $timeout){
+				$scope.dzOptions = {
+					paramName : 'photo',
+					maxFilesize : '10'
+				};
+				
+				$scope.dzCallbacks = {
+					'addedfile' : function(file){
+						console.info('File added from dropzone 1.', file);
+					}
+				};
+			});
+		</script>
+
+
+		<!-- ####################################################### -->
+		<!-- ######################  ASYNC JS  ##################### -->
+		<!-- ####################################################### -->
+		<script async defer id="github-bjs" src="https://buttons.github.io/buttons.js"></script>
+	</body>
+</html>
+
