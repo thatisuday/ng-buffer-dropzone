@@ -1,6 +1,8 @@
 # ng-buffer-dropzone
 Extended version of ng-dropzone with buffer paste option.
 
+### [preview](https://rawgit.com/thatisuday/ng-buffer-dropzone/master/test/test.html) : try `prtScr`(print screen) & `Ctrl+v` (paste)
+
 > You will be able to copy image in clipboard and past on dropzone to upload that image
 
 ***
